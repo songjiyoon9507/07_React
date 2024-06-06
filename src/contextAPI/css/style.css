@@ -1,0 +1,21 @@
+/* context api를 이용한 하위 모든 컴포넌트에게 라이트 테마, 다크 테마 적용시키기 */
+
+/* 라이트 테마에 대한 스타일 정의 */
+.light-theme {
+    width: 100%;
+    height: 300px;
+    background-color: #fff;
+    color: #000;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 다크 테마에 대한 스타일 정의 */
+.dart-theme {
+    width: 100%;
+    height: 300px;
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
