@@ -5,8 +5,37 @@ import Exam6_1, {Exam6_2} from './exam/Exam6';
 import { ThemeProvider } from './contextAPI/ThemeContext';
 import ThemeToggle from './contextAPI/ThemeToggle';
 import ThemeComponent from './contextAPI/ThemeComponent';
+import { useState } from 'react';
+// import './default.css';
+
 
 function App() {
+
+  const [todoList, setTodoList] = useState([
+
+    { title : "React 개념정리", isComplete : false },
+    
+    { title : "도서관에 책 반납하기", isComplete : true }
+    
+    ]);
+    
+    const [inputTodo, setInputTodo] = useState("");
+    
+    const changeTodo = (e) => {
+    
+    setInputTodo(e.target.value);
+
+    
+    }
+    
+    const addTodo = () => {
+    
+    setTodoList([...todoList, { title: inputTodo , isComplete : false }]);
+    
+    // 비워주기 여기서 해야함
+    setInputTodo("");
+    }
+
   return (
     <div className="App">
       <ThemeProvider>
@@ -21,6 +50,75 @@ function App() {
       {/* <Exam6_2 /> */}
       <TodoList />
     </div>
+
+
+//     <div class="container">
+
+//     <table border={1}>
+
+//       <thead>
+
+//       <tr>
+
+//       <th>할 일 내용</th>
+
+//       <th>완료 여부</th>
+
+//       </tr>
+
+//       </thead>
+
+//       <tbody>
+//       {/* 기존에 있던 값 2개 먼저 보여줘야함 */}
+//         {/* {todoList.map((todo,index) => {
+
+//         // <tr>
+
+//         // <td>{todo.title}</td>
+
+//         // <td>{todo.isComplete ? "완료" : "미완료"}</td>
+
+//         // </tr>
+
+
+//         })} */}
+
+//           {/* tr 태그 안에서 작성 */}
+//           {/* {
+//             todoList.map((todo, index) => (
+//               <tr>
+//                 <td>{todo.title}</td>
+//                 <td>{todo.isComplete ? '완료' : '미완료'}</td>
+//               </tr>
+//             ))
+//           } */}
+// {
+// todoList.map((el) => (
+// <tr>
+
+// <td>{el.title}</td>
+
+// <td>{el.isComplete ? "완료" : "미완료"}</td>
+
+// </tr>
+// ))
+// }
+
+
+//       </tbody>
+
+//     </table>
+
+//     <div className='inputDiv'>
+
+//     {/* inputValue 가 아니라 inputTodo */}
+//     <input type='text' value={inputTodo} onChange={changeTodo}></input>
+
+//     <button onClick={addTodo}>할 일 등록</button>
+
+//     </div>
+
+// </div>
   );
 }
 
