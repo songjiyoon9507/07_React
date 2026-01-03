@@ -16,6 +16,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,8 +32,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(
+			strategy = GenerationType.SEQUENCE,
+			generator =  "user_seq_gen")
+	@SequenceGenerator(
+			name = "user_seq_gen",
+			sequenceName = "USER_SEQ",
+			allocationSize = 1)
 	private Long id;
+	// MariaDB
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
+	/* DB별 프로파일 분리해서 사용하는 방법
+	 * @Profile("oracle")
+	 * @GeneratedValue(strategy = GenerationType.SEQUENCE, ...)
+	 * 
+	 * @Profile("mariadb")
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 * */
 	
     @Column(name = "username", unique = true, nullable = false, updatable = false)
     private String username;
