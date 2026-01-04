@@ -57,6 +57,7 @@ public class UserService {
 	    
 		// 본인만 수정 가능 검증
 	    String sessionUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+	    // 인증이 안된 상태일 경우(null 이거나 anonymousUser)
 	    if (!sessionUsername.equals(dto.getUsername())) {
 	        throw new AccessDeniedException("본인 계정만 수정 가능");
 	    }
